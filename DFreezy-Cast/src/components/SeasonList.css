@@ -1,0 +1,43 @@
+.season-list {
+  padding: 20px;
+}
+
+.episode {
+  margin-bottom: 20px;
+}
+
+.episode-details {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.audio-controls audio {
+  margin-right: 10px;
+}
+
+.audio-controls button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.add-favorite {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+.remove-favorite {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+

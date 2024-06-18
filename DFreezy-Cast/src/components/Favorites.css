@@ -1,0 +1,42 @@
+.Favorites {
+  padding: 20px;
+}
+
+.ShowGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
+  gap: 20px; /* Adjust gap for spacing between images */
+}
+
+.ShowCard {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.ShowImage {
+  width: 100%; /* Ensure the image takes full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 200px; /* Set maximum height for the image */
+  object-fit: cover; /* Ensure the image covers the container */
+}
+
+.ShowLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.ShowCard h3 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.ShowCard p {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  color: #666;
+}
+
+playItBruh {
+  margin-top: 5px;
+}

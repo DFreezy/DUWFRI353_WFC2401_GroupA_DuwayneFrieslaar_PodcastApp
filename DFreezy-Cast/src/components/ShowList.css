@@ -1,0 +1,68 @@
+/* ShowList.css */
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.controls select,
+.controls input[type="text"] {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.controls select {
+  margin-right: 10px;
+}
+
+.ShowGrid {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.ShowCard {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ShowLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ShowImage {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.ShowCard h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.ShowCard p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.ShowCard p:last-child {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .ShowGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}

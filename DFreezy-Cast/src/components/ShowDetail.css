@@ -1,0 +1,71 @@
+/* ShowDetail.css */
+
+.ShowDetail {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.SeasonsDropdown {
+  margin-bottom: 20px;
+}
+
+.SeasonsDropdown label {
+  font-size: 1em;
+  margin-right: 10px;
+}
+
+.SeasonsDropdown select {
+  font-size: 1em;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.EpisodesList {
+  margin-top: 20px;
+}
+
+.EpisodeCard {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.added {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.added:hover {
+  background-color: #45a049;
+}
+
+button {
+  background-color: #008CBA; /* Blue */
+  color: white;
+  padding: 10px 24px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #007bb5;
+}
