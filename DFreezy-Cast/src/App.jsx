@@ -12,12 +12,10 @@ const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [favorites, setFavorites] = useState(() => {
-    // Load favorites from localStorage or initialize empty object
     const storedFavorites = localStorage.getItem('favorites');
     return storedFavorites ? JSON.parse(storedFavorites) : {};
   });
 
-  // Update localStorage whenever favorites change
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
@@ -32,24 +30,27 @@ const App = () => {
 
   const addToFavorites = (episode) => {
     const { showId } = episode;
-    // Check if the showId already exists in favorites
+    const timestamp = new Date().toISOString();
+
+    const episodeWithTimestamp = {
+      ...episode,
+      dateAdded: timestamp,
+    };
+
     if (favorites[showId]) {
-      // Update existing show's episodes array
       setFavorites({
         ...favorites,
-        [showId]: [...favorites[showId], episode]
+        [showId]: [...favorites[showId], episodeWithTimestamp],
       });
     } else {
-      // Initialize a new show entry with the first episode
       setFavorites({
         ...favorites,
-        [showId]: [episode]
+        [showId]: [episodeWithTimestamp],
       });
     }
   };
 
   const removeFromFavorites = (episodeId) => {
-    // Remove an episode from favorites based on its ID
     const updatedFavorites = { ...favorites };
     Object.keys(updatedFavorites).forEach(showId => {
       updatedFavorites[showId] = updatedFavorites[showId].filter(episode => episode.id !== episodeId);
@@ -70,8 +71,7 @@ const App = () => {
             toggleTheme={toggleTheme}
             isDarkMode={isDarkMode}
           />
-          
-          <h1><img src="./images/DFreezy.png" class="logo"></img>🎙️DFREEZY CAST</h1>
+          <h1><img src="./images/DFreezy.png" className="logo" alt="DFreezy Logo" />🎙️DFREEZY CAST</h1>
           <Routes>
             <Route path="/" element={<ShowList addToFavorites={addToFavorites} />} />
             <Route path="/favoriteShow" element={<FavoriteShow favorites={favorites} removeFromFavorites={removeFromFavorites} />} />

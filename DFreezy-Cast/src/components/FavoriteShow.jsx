@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Favorites.css';
 
 const FavoriteShow = ({ favorites, removeFromFavorites }) => {
-  const [sortBy, setSortBy] = useState('title'); // Default sort by title
-  const [sortDirection, setSortDirection] = useState('asc'); // Default sort direction ascending
+  const [sortBy, setSortBy] = useState('title'); 
+  const [sortDirection, setSortDirection] = useState('asc');
 
-  // Update localStorage whenever favorites change
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  // Function to handle sorting change
   const handleSortChange = (e) => {
     const { value } = e.target;
     setSortBy(value);
-    // Toggle sort direction if same sort option is clicked again
     setSortDirection(value === sortBy ? (sortDirection === 'asc' ? 'desc' : 'asc') : 'asc');
   };
 
-  // Function to sort episodes based on current sort settings
   const sortedEpisodes = [...Object.values(favorites).flat()].sort((a, b) => {
     if (sortBy === 'title') {
       return sortDirection === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
@@ -29,7 +26,7 @@ const FavoriteShow = ({ favorites, removeFromFavorites }) => {
     } else if (sortBy === 'updatedDesc') {
       return sortDirection === 'asc' ? new Date(b.updated) - new Date(a.updated) : new Date(a.updated) - new Date(b.updated);
     }
-    return a.title.localeCompare(b.title); // Default to sort by title
+    return a.title.localeCompare(b.title);
   });
 
   return (
@@ -55,7 +52,7 @@ const FavoriteShow = ({ favorites, removeFromFavorites }) => {
                   <p>{episode.description}</p>
                   <p>Show: {episode.showTitle}</p>
                   <p>Season: {episode.seasonNumber}</p>
-                  <p>Added on: {episode.dateAdded}</p>
+                  <p>Added on: {new Date(episode.dateAdded).toLocaleString()}</p>
                   <Link to={`/shows/${episode.showId}`} className="ShowLink">
                     <img
                       src={episode.image}
@@ -68,7 +65,6 @@ const FavoriteShow = ({ favorites, removeFromFavorites }) => {
                     Remove from Favorites
                   </button>
                 </div>
-                {/* Audio player for the episode */}
                 <audio controls>
                   <source
                     src={episode.audioUrl || 'https://podcast-api.netlify.app/placeholder-audio.mp3'}

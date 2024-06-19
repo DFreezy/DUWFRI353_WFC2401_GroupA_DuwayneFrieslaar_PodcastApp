@@ -1,15 +1,27 @@
 .season-list {
   padding: 20px;
+  background-color: #f9f9f9;
 }
 
 .episode {
   margin-bottom: 20px;
+  transition: transform 0.3s;
+}
+
+.episode:hover {
+  transform: translateY(-5px);
 }
 
 .episode-details {
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.episode-details:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .audio-controls {
@@ -20,24 +32,35 @@
 
 .audio-controls audio {
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 .audio-controls button {
-  padding: 5px 10px;
+  padding: 8px 15px;
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.audio-controls button:hover {
+  transform: translateY(-2px);
 }
 
 .add-favorite {
   background-color: #4caf50;
   color: white;
-  border: none;
-  border-radius: 3px;
+}
+
+.add-favorite:hover {
+  background-color: #45a049;
 }
 
 .remove-favorite {
   background-color: #f44336;
   color: white;
-  border: none;
-  border-radius: 3px;
 }
 
+.remove-favorite:hover {
+  background-color: #e53935;
+}
