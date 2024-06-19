@@ -70,7 +70,8 @@ const App = () => {
             toggleTheme={toggleTheme}
             isDarkMode={isDarkMode}
           />
-          <h1>🎙️DFREEZY CAST</h1>
+          
+          <h1><img src="./images/DFreezy.png" class="logo"></img>🎙️DFREEZY CAST</h1>
           <Routes>
             <Route path="/" element={<ShowList addToFavorites={addToFavorites} />} />
             <Route path="/favoriteShow" element={<FavoriteShow favorites={favorites} removeFromFavorites={removeFromFavorites} />} />

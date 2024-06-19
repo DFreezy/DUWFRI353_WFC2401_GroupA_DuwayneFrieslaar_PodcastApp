@@ -42,7 +42,7 @@ const ShowList = ({ addToFavorites }) => {
   };
 
   const filteredAndSortedShows = [...shows]
-    .filter(show =>
+    .filter((show) =>
       show.title.toLowerCase().includes(filterText.toLowerCase())
     )
     .sort((a, b) => {
@@ -50,12 +50,20 @@ const ShowList = ({ addToFavorites }) => {
         return sortDirection === 'asc'
           ? a.title.localeCompare(b.title)
           : b.title.localeCompare(a.title);
+      } else if (sortBy === 'titleDesc') {
+        return sortDirection === 'asc'
+          ? b.title.localeCompare(a.title) // Sort Z-A
+          : a.title.localeCompare(b.title); // Sort A-Z
       } else if (sortBy === 'updated') {
         return sortDirection === 'asc'
           ? new Date(a.updated) - new Date(b.updated)
           : new Date(b.updated) - new Date(a.updated);
+      } else if (sortBy === 'updatedDesc') {
+        return sortDirection === 'asc'
+          ? new Date(b.updated) - new Date(a.updated)
+          : new Date(a.updated) - new Date(b.updated);
       }
-      return a.title.localeCompare(b.title);
+      return a.title.localeCompare(b.title); // Default to sort by title
     });
 
   return (
@@ -78,7 +86,7 @@ const ShowList = ({ addToFavorites }) => {
         <p>Loading...</p>
       ) : (
         <ul className="ShowGrid">
-          {filteredAndSortedShows.map(show => (
+          {filteredAndSortedShows.map((show) => (
             <li key={show.id} className="ShowCard">
               <Link to={`/shows/${show.id}`} className="ShowLink">
                 <img src={show.image} alt={show.title} className="ShowImage" />
