@@ -1,4 +1,7 @@
+// SignIn.jsx
+
 import React, { useState } from 'react';
+import './SignIn.css'; // Import your CSS file
 
 const SignIn = ({ onSignIn }) => {
   const [email, setEmail] = useState('');

@@ -1,71 +1,63 @@
-/* ShowDetail.css */
+/* ShowDetails.css */
 
-.ShowDetail {
+.ShowDetails {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-h1 {
-  font-size: 2em;
+.SeasonImage {
+  max-width: 100%;
+  height: auto;
   margin-bottom: 10px;
 }
 
-p {
-  font-size: 1em;
+.ShowDetails h2 {
+  font-size: 24px;
+}
+
+.ShowDetails p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.ShowDetails details {
   margin-bottom: 20px;
 }
 
-.SeasonsDropdown {
+.ShowDetails details summary {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ShowDetails details ol {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ShowDetails details li {
   margin-bottom: 20px;
 }
 
-.SeasonsDropdown label {
-  font-size: 1em;
+.ShowDetails details h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.ShowDetails details p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.ShowDetails details button {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
   margin-right: 10px;
 }
 
-.SeasonsDropdown select {
-  font-size: 1em;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-}
-
-.EpisodesList {
-  margin-top: 20px;
-}
-
-.EpisodeCard {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-}
-
-audio {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.added {
-  background-color: #4CAF50; /* Green */
-  color: white;
-}
-
-.added:hover {
-  background-color: #45a049;
-}
-
-button {
-  background-color: #008CBA; /* Blue */
-  color: white;
-  padding: 10px 24px;
-  margin: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #007bb5;
+.ShowDetails details button:last-child {
+  margin-right: 0;
 }
