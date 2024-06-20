@@ -97,19 +97,27 @@ const ShowList = ({ addToFavorites }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: Math.min(5, shows.length), // Show maximum of 5 slides or the number of shows available
     slidesToScroll: 1,
+    autoplay: true, // Enable automatic sliding
+    autoplaySpeed: 500, // Time between slides (in milliseconds)
     responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: Math.min(3, shows.length),
+        }
+      },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2
+          slidesToShow: Math.min(2, shows.length),
         }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1
+          slidesToShow: 1,
         }
       }
     ]

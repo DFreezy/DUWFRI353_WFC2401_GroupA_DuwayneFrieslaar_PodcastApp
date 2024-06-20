@@ -54,6 +54,32 @@
 }
 
 .CarouselImage {
-  width: 100%; /* Adjust as needed */
+  width: 70%; /* Adjust as needed */
   height: auto; /* Maintain aspect ratio */
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 20px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  color: #ccc;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
 }
