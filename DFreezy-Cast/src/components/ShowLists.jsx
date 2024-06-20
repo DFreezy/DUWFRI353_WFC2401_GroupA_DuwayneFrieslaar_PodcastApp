@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './ShowList.css';
 
 const API_BASE_URL = 'https://podcast-api.netlify.app';
@@ -22,17 +25,26 @@ const ShowList = ({ addToFavorites }) => {
   const [sortBy, setSortBy] = useState('title'); // State for sorting criteria
   const [sortDirection, setSortDirection] = useState('asc'); // State for sorting direction
   const [filterText, setFilterText] = useState(''); // State for filtering text
+  const [descriptions, setDescriptions] = useState({}); // State to hold show descriptions
 
   useEffect(() => {
-    // Effect to fetch shows from API on component mount
+    // Effect to fetch shows and descriptions from API on component mount
     const fetchShows = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/shows`);
-        setShows(response.data); // Set shows state with fetched data
+        const showsResponse = await axios.get(`${API_BASE_URL}/shows`);
+        setShows(showsResponse.data); // Set shows state with fetched data
         setLoading(false); // Set loading to false after data is fetched
+
+        // Fetch descriptions for each show
+        const descriptionsResponse = await axios.get(`${API_BASE_URL}/descriptions`);
+        const descriptionsMap = descriptionsResponse.data.reduce((acc, cur) => {
+          acc[cur.id] = cur.description;
+          return acc;
+        }, {});
+        setDescriptions(descriptionsMap); // Set descriptions state
       } catch (error) {
-        console.error('Error fetching shows:', error); // Log error if fetching fails
-        setLoading(false); // Set loading to false in case of error
+        console.error('Error fetching data:', error);
+        setLoading(false);
       }
     };
 
@@ -80,8 +92,46 @@ const ShowList = ({ addToFavorites }) => {
       return a.title.localeCompare(b.title); // Default to sort by title
     });
 
+  // Slider settings for react-slick carousel
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  };
+
   return (
     <div className="ShowList">
+      <div className="carousel-container">
+        <Slider {...sliderSettings}>
+          {shows.map((show) => (
+            <div key={show.id}>
+              <Link to={`/shows/${show.id}`} className="CarouselCard">
+                <img src={show.image} alt={show.title} className="CarouselImage" />
+                <div className="CarouselDetails">
+                  <h3>{show.title}</h3>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </Slider>
+      </div>
+
       <div className="controls">
         <input
           type="text"
@@ -96,23 +146,25 @@ const ShowList = ({ addToFavorites }) => {
           <option value="updatedDesc">Sort by Furthest Back Updated</option>
         </select>
       </div>
+
       {loading ? (
-        <p>Loading...</p> // Show loading message while fetching shows
+        <p>Loading...</p>
       ) : (
         <div className="ShowGrid">
           {filteredAndSortedShows.map((show) => (
             <Link to={`/shows/${show.id}`} className="ShowCard" key={show.id}>
-              <img src={show.image} alt={show.title} className="ShowImage" /> {/* Show image */}
+              <img src={show.image} alt={show.title} className="ShowImage" />
               <div className="ShowDetails">
-                <h3>{show.title}</h3> {/* Show title */}
-                <p>Seasons: {show.seasons}</p> {/* Number of seasons */}
-                <p>Genre: {GENRE_IDS[show.genre]}</p> {/* Genre based on GENRE_IDS */}
+                <h3>{show.title}</h3>
+                <p>Seasons: {show.seasons}</p>
+                <p>Genre: {GENRE_IDS[show.genre]}</p>
                 <p>
                   Last Updated:{' '}
                   {show.updated
                     ? new Date(show.updated).toLocaleDateString()
-                    : 'N/A'} {/* Last updated date */}
+                    : 'N/A'}
                 </p>
+                <p>Description: {descriptions[show.id]}</p>
               </div>
             </Link>
           ))}

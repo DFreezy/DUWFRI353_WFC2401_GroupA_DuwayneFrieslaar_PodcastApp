@@ -52,3 +52,8 @@
   font-size: 0.9rem;
   color: #666;
 }
+
+.CarouselImage {
+  width: 100%; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+}

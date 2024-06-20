@@ -1,36 +1,70 @@
-/* FavoriteShow.css */
-.FavoriteItem {
-  margin: 20px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.FavoriteShow {
+  padding: 1rem;
+}
+
+.FavoritesList {
   list-style: none;
+  padding: 0;
+}
+
+.FavoriteItem {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .FavoriteItem h3 {
-  margin: 0 0 10px;
+  margin-bottom: 0.5rem;
 }
 
 .FavoriteItem p {
-  margin: 5px 0;
-}
-
-.ShowLink {
-  text-decoration: none;
-  color: inherit;
+  margin: 0.5rem 0;
 }
 
 .ShowImage {
-  width: 150px;
+  width: 100%;
   height: auto;
-  display: block;
-  margin-top: 10px;
+  border-radius: 5px;
 }
 
-.sort-controls {
-  margin-bottom: 20px;
+.ShowLink {
+  color: #007bff;
+  text-decoration: none;
 }
 
-audio {
-  margin-top: 10px;
+.FavoriteItem ul {
+  margin-top: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.FavoriteItem ul li {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.FavoriteItem ul li h4 {
+  margin-bottom: 0.5rem;
+}
+
+.FavoriteItem ul li p {
+  margin: 0.5rem 0;
+}
+
+.FavoriteItem ul li button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.FavoriteItem ul li button:hover {
+  background-color: #c82333;
 }
