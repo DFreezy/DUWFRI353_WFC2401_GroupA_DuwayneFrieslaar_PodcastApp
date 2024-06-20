@@ -1,29 +1,62 @@
 /* App.css */
-
 .App {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
   min-height: 100vh;
+  background-color: #f0f0f0; /* Default background color */
+}
+
+.dark-mode .App {
+  background-color: #333; /* Dark mode background color */
+  color: #fff; /* Dark mode text color */
+}
+
+header {
+  grid-area: 1 / 1 / 2 / 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-family: Arial, sans-serif;
+  align-items: center;
+  padding: 1rem;
+  background-color: #007bff; /* Header background color */
 }
 
-.dark-mode {
-  --bg-color: #1f1f1f;
-  --text-color: #ffffff;
+main {
+  grid-area: 2 / 1 / 3 / 2;
+  padding: 1rem;
+  overflow-y: auto; /* Enable scrolling if content exceeds viewport */
 }
 
-.light-mode {
-  --bg-color: #ffffff;
-  --text-color: #1f1f1f;
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: inherit;
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+.main-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr; /* Switch to single column layout on smaller screens */
+  }
+}
+
+.logo {
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+
+/* Additional styles for sidebar, favorite section, etc. */
 
 .sidebar {
   position: fixed;
@@ -31,38 +64,39 @@ body {
   left: -250px;
   width: 250px;
   height: 100%;
-  background-color: var(--bg-color);
-  transition: left 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  color: var(--text-color);
+  background-color: #fff;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.dark-mode .sidebar {
+  background-color: #333; /* Dark mode sidebar background color */
+  color: #fff; /* Dark mode sidebar text color */
 }
 
 .sidebar.open {
   left: 0;
 }
 
-.close-btn {
-  align-self: flex-end;
+.sidebar .close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
-  color: var(--text-color);
+  color: inherit;
 }
 
 .theme-toggle {
-  margin-top: 20px;
+  padding: 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-.theme-toggle label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.theme-toggle input[type="checkbox"] {
+  display: none;
 }
 
 .theme-toggle .switch {
@@ -70,10 +104,9 @@ body {
   width: 40px;
   height: 20px;
   background-color: #ccc;
-  border-radius: 10px;
   position: relative;
-  transition: background-color 0.3s ease;
-  margin-left: 10px;
+  border-radius: 10px;
+  margin-right: 0.5rem;
 }
 
 .theme-toggle .switch:before {
@@ -83,61 +116,17 @@ body {
   height: 16px;
   border-radius: 50%;
   background-color: #fff;
-  left: 2px;
   top: 2px;
-  transition: transform 0.3s ease;
+  left: 2px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.theme-toggle input[type="checkbox"] {
-  display: none;
-}
-
-.theme-toggle input[type="checkbox"]:checked + .switch {
-  background-color: #666;
-}
-
-.theme-toggle input[type="checkbox"]:checked + .switch:before {
+.theme-toggle input:checked + .switch:before {
   transform: translateX(20px);
 }
 
 .favorites-section {
-  margin-top: 20px;
+  padding: 1rem;
 }
 
-.favorites-section h3 {
-  margin-bottom: 10px;
-  color: var(--text-color);
-}
-
-.favorites-section a {
-  color: var(--text-color);
-  text-decoration: none;
-  cursor: pointer;
-  display: inline-block;
-  padding: 5px 10px;
-  border: 1px solid var(--text-color);
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.favorites-section a:hover {
-  background-color: var(--text-color);
-  color: var(--bg-color);
-}
-
-.light-mode {
-  background-color: #ffffff;
-  color: #333333;
-}
-
-/* Dark mode */
-.dark-mode {
-  background-color: #5204b800;
-  color: #ffffff;
-}
-
-.logo {
-width: 70px;
-height: 70px;
-margin: 0 auto;
-}
+/* Additional styling for ShowList, SeasonList, FavoriteShow, etc. */

@@ -99,11 +99,11 @@ const ShowList = ({ addToFavorites }) => {
       {loading ? (
         <p>Loading...</p> // Show loading message while fetching shows
       ) : (
-        <ul className="ShowGrid">
+        <div className="ShowGrid">
           {filteredAndSortedShows.map((show) => (
-            <li key={show.id} className="ShowCard"> {/* Unique key for each show item */}
-              <Link to={`/shows/${show.id}`} className="ShowLink"> {/* Link to show details */}
-                <img src={show.image} alt={show.title} className="ShowImage" /> {/* Show image */}
+            <Link to={`/shows/${show.id}`} className="ShowCard" key={show.id}>
+              <img src={show.image} alt={show.title} className="ShowImage" /> {/* Show image */}
+              <div className="ShowDetails">
                 <h3>{show.title}</h3> {/* Show title */}
                 <p>Seasons: {show.seasons}</p> {/* Number of seasons */}
                 <p>Genre: {GENRE_IDS[show.genre]}</p> {/* Genre based on GENRE_IDS */}
@@ -113,10 +113,10 @@ const ShowList = ({ addToFavorites }) => {
                     ? new Date(show.updated).toLocaleDateString()
                     : 'N/A'} {/* Last updated date */}
                 </p>
-              </Link>
-            </li>
+              </div>
+            </Link>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

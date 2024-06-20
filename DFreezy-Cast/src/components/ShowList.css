@@ -1,68 +1,54 @@
 /* ShowList.css */
+.ShowList {
+  padding: 1rem;
+}
 
 .controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
-.controls select,
-.controls input[type="text"] {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-}
-
+.controls input[type="text"],
 .controls select {
-  margin-right: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .ShowGrid {
-  list-style-type: none;
-  padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
 }
 
 .ShowCard {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 1rem;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease-in-out;
 }
 
-.ShowLink {
-  display: block;
-  text-decoration: none;
-  color: inherit;
+.ShowCard:hover {
+  transform: translateY(-5px);
 }
 
 .ShowImage {
   width: 100%;
   height: auto;
-  border-bottom: 1px solid #ddd;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
 }
 
-.ShowCard h3 {
-  font-size: 18px;
-  margin: 10px 0;
+.ShowDetails h3 {
+  margin-bottom: 0.5rem;
 }
 
-.ShowCard p {
-  margin: 5px 0;
-  font-size: 14px;
+.ShowDetails p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
   color: #666;
-}
-
-.ShowCard p:last-child {
-  margin-bottom: 10px;
-}
-
-@media (max-width: 768px) {
-  .ShowGrid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
 }
