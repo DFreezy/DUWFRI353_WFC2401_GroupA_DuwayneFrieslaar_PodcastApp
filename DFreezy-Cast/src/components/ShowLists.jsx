@@ -97,21 +97,21 @@ const ShowList = ({ addToFavorites }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: Math.min(5, shows.length), // Show maximum of 5 slides or the number of shows available
+    slidesToShow: Math.min(5, filteredAndSortedShows.length), // Show maximum of 5 slides or the number of shows available
     slidesToScroll: 1,
     autoplay: true, // Enable automatic sliding
-    autoplaySpeed: 500, // Time between slides (in milliseconds)
+    autoplaySpeed: 2000, // Time between slides (in milliseconds)
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: Math.min(3, shows.length),
+          slidesToShow: Math.min(3, filteredAndSortedShows.length),
         }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: Math.min(2, shows.length),
+          slidesToShow: Math.min(2, filteredAndSortedShows.length),
         }
       },
       {
@@ -127,7 +127,7 @@ const ShowList = ({ addToFavorites }) => {
     <div className="ShowList">
       <div className="carousel-container">
         <Slider {...sliderSettings}>
-          {shows.map((show) => (
+          {filteredAndSortedShows.map((show) => (
             <div key={show.id}>
               <Link to={`/shows/${show.id}`} className="CarouselCard">
                 <img src={show.image} alt={show.title} className="CarouselImage" />
