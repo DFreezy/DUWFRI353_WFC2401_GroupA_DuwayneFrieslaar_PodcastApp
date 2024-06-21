@@ -60,17 +60,3 @@ For questions, feedback, or support, please contact:
 Email: duwaynefrieslaar23@gmail.com
 Website: https://fascinating-unicorn-821425.netlify.app
 GitHub: https://github.com/DFreezy
-
-
-
-
-
-
-
-
-
-
-
-
-
-ChatGPT can make mistakes. Check importa
