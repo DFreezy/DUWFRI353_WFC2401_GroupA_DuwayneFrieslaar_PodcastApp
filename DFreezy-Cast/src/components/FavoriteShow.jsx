@@ -1,13 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Favorites.css';
 
 const FavoriteShow = ({ favorites, removeFromFavorites }) => {
   const [sortBy, setSortBy] = useState('title'); 
   const [sortDirection, setSortDirection] = useState('asc');
+  const [seasonsMap, setSeasonsMap] = useState({}); // State to store season details
 
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  useEffect(() => {
+    // Fetch and store all season details for the favorite episodes
+    const fetchSeasonDetails = async () => {
+      try {
+        const seasonIds = [...new Set(Object.values(favorites).flat().map(episode => episode.seasonId))];
+        const seasonPromises = seasonIds.map(seasonId => axios.get(`https://podcast-api.netlify.app/seasons/${seasonId}`));
+        const seasonResponses = await Promise.all(seasonPromises);
+        const seasonDetailsMap = seasonResponses.reduce((acc, response) => {
+          acc[response.data.id] = response.data;
+          return acc;
+        }, {});
+        setSeasonsMap(seasonDetailsMap);
+      } catch (error) {
+        console.error('Error fetching season details:', error);
+      }
+    };
+
+    fetchSeasonDetails();
   }, [favorites]);
 
   const handleSortChange = (e) => {
@@ -51,7 +73,7 @@ const FavoriteShow = ({ favorites, removeFromFavorites }) => {
                   <h3>{episode.title}</h3>
                   <p>{episode.description}</p>
                   <p>Show: {episode.showTitle}</p>
-                  <p>Season: {episode.seasonNumber}</p>
+                  <p>Season: {seasonsMap[episode.seasonId]?.seasonNumber}</p> {/* Display season number */}
                   <p>Added on: {new Date(episode.dateAdded).toLocaleString()}</p>
                   <Link to={`/shows/${episode.showId}`} className="ShowLink">
                     <img
