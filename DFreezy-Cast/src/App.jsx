@@ -62,6 +62,11 @@ const App = () => {
     });
   };
 
+  const resetFavorites = () => {
+    localStorage.removeItem('favorites');
+    setFavorites({});
+  };
+
   return (
     <Router>
       <AudioProvider>
@@ -74,16 +79,29 @@ const App = () => {
             toggleSidebar={toggleSidebar}
             toggleTheme={toggleTheme}
             isDarkMode={isDarkMode}
+            resetFavorites={resetFavorites} // Pass resetFavorites as a prop to Sidebar
           />
           <header>
             <h1><img src="./images/DFreezy.png" className="logo" alt="DFreezy Logo" />🎙️DFREEZY CAST</h1>
           </header>
           <main className="main-content">
             <Routes>
-              <Route path="/" element={<ShowList addToFavorites={addToFavorites} />} />
-              <Route path="/favoriteShow" element={<FavoriteShow favorites={favorites} removeFromFavorites={removeFromFavorites} />} />
-              <Route path="/shows/:showId" element={<SeasonList addToFavorites={addToFavorites} />} />
-              <Route path="/shows/:showId/episodes/:episodeId" element={<ShowDetails addToFavorites={addToFavorites} />} />
+              <Route
+                path="/"
+                element={<ShowList addToFavorites={addToFavorites} resetFavorites={resetFavorites} />}
+              />
+              <Route
+                path="/favoriteShow"
+                element={<FavoriteShow favorites={favorites} removeFromFavorites={removeFromFavorites} />}
+              />
+              <Route
+                path="/shows/:showId"
+                element={<SeasonList addToFavorites={addToFavorites} />}
+              />
+              <Route
+                path="/shows/:showId/episodes/:episodeId"
+                element={<ShowDetails addToFavorites={addToFavorites} />}
+              />
             </Routes>
           </main>
         </div>
