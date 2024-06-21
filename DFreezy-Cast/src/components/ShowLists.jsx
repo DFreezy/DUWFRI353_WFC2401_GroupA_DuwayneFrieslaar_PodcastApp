@@ -100,7 +100,7 @@ const ShowList = ({ addToFavorites }) => {
     slidesToShow: Math.min(5, filteredAndSortedShows.length), // Show maximum of 5 slides or the number of shows available
     slidesToScroll: 1,
     autoplay: true, // Enable automatic sliding
-    autoplaySpeed: 2000, // Time between slides (in milliseconds)
+    autoplaySpeed: 500, // Time between slides (in milliseconds)
     responsive: [
       {
         breakpoint: 1024,
